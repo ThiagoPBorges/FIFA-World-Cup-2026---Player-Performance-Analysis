@@ -573,3 +573,16 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudio
+
+# ========== ESPECÍFICO PARA ESTE PROJETO ==========
+# Kaggle & Credenciais
+kaggle.json
+.kaggle/
+
+# Dados brutos e processados
+*.csv
+*.xlsx
+wc_dados.xlsx
+
+# Documentação de case (opcional - manter ou remover)
+# dinamica_hands_on.pdf
