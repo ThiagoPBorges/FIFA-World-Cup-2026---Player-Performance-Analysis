@@ -80,11 +80,12 @@
    - Correlação forte (0.727) com `offensive_contribution`
    - Jersey_number (0.569): Atacantes > Defensores
 10. **Valor de Mercado** → `market_value_eur` — Valor em euros
-  - Correlação forte (0.6) com `consistency_score`
-  - Offensive_contribution (0.5): Atacantes > Defensores
 
-**Insight:** A criatividade de um atacante (jersey 9-11) é ~2x maior que a de um defensor, 
-validando que a métrica diferencia posições corretamente. Valor de mercado correlaciona 
+- Correlação forte (0.6) com `consistency_score`
+- Offensive_contribution (0.5): Atacantes > Defensores
+
+**Insight:** A criatividade de um atacante (jersey 9-11) é ~2x maior que a de um defensor,
+validando que a métrica diferencia posições corretamente. Valor de mercado correlaciona
 com ofensiva mas não com consistência — preço reflete potencial, não regularidade.
 
 ---
@@ -106,3 +107,5 @@ com ofensiva mas não com consistência — preço reflete potencial, não regul
 
 Conforme os termos da licença MIT, este projeto mantém a atribuição ao criador original do dataset.
 Link - [www.kaggle.com/datasets/rauffauzanrambe/fifa-world-cup-2026-player-performance-dataset](https://www.kaggle.com/datasets/rauffauzanrambe/fifa-world-cup-2026-player-performance-dataset)
+
+Github Repositório - [github.com/ThiagoPBorges/FIFA-World-Cup-2026---Player-Performance-Analysis](https://github.com/ThiagoPBorges/FIFA-World-Cup-2026---Player-Performance-Analysis)
