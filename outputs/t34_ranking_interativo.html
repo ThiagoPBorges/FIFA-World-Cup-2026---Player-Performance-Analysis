@@ -1,0 +1,89 @@
+
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Top 20 Artilheiros - Copa 2026</title>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+            .container { max-width: 1000px; margin: 0 auto; }
+            h1 { text-align: center; color: white; margin-bottom: 30px; }
+            .search-box { text-align: center; margin-bottom: 20px; }
+            input { padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; width: 300px; }
+            table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+            th { background: #667eea; color: white; padding: 15px; text-align: left; font-weight: 600; }
+            td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+            tr:hover { background: #f5f5f5; }
+            .rank { font-weight: bold; color: #667eea; }
+            .over-perf { color: green; font-weight: bold; }
+            .under-perf { color: red; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>⚽ Top 20 Artilheiros - Copa do Mundo 2026</h1>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Procurar por jogador, time ou posição..." onkeyup="filterTable()">
+            </div>
+            
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Jogador</th>
+                        <th>Time</th>
+                        <th>Posição</th>
+                        <th>Gols</th>
+                        <th>xG</th>
+                        <th>Over-Performance</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+        
+        <script>
+            const data = [{"player_name":"Memphis Zerrouki","team":"Netherlands","position":"Forward","goals":4,"expected_goals_xg":0.04},{"player_name":"Samuel Olinga","team":"Cameroon","position":"Forward","goals":4,"expected_goals_xg":0.03},{"player_name":"Tajon Buchanan","team":"Canada","position":"Forward","goals":4,"expected_goals_xg":0.0},{"player_name":"Husniddin Nasrullaev","team":"Uzbekistan","position":"Forward","goals":3,"expected_goals_xg":0.0},{"player_name":"Phil White","team":"England","position":"Forward","goals":3,"expected_goals_xg":0.65},{"player_name":"Ritsu Endo","team":"Japan","position":"Forward","goals":3,"expected_goals_xg":0.14},{"player_name":"Romelu Vanheusden","team":"Belgium","position":"Forward","goals":3,"expected_goals_xg":0.21},{"player_name":"Anibal Sanchez","team":"Panama","position":"Forward","goals":3,"expected_goals_xg":0.02},{"player_name":"Sergio Lapadula","team":"Peru","position":"Midfielder","goals":3,"expected_goals_xg":0.0},{"player_name":"Cengiz Gonul","team":"Turkey","position":"Forward","goals":3,"expected_goals_xg":0.05},{"player_name":"Aaron Wright","team":"Australia","position":"Forward","goals":3,"expected_goals_xg":0.05},{"player_name":"Celso Campbell","team":"Costa Rica","position":"Forward","goals":3,"expected_goals_xg":0.0},{"player_name":"Federico Colpani","team":"Italy","position":"Forward","goals":3,"expected_goals_xg":0.04},{"player_name":"Neymar Carvalho","team":"Brazil","position":"Forward","goals":3,"expected_goals_xg":0.01},{"player_name":"Memphis Zerrouki","team":"Netherlands","position":"Forward","goals":3,"expected_goals_xg":0.0},{"player_name":"Dominik Kramaric","team":"Croatia","position":"Forward","goals":3,"expected_goals_xg":0.0},{"player_name":"Saman Azmoun","team":"Iran","position":"Forward","goals":3,"expected_goals_xg":0.0},{"player_name":"Leon Grant","team":"Jamaica","position":"Midfielder","goals":2,"expected_goals_xg":0.0},{"player_name":"Leon Gotze","team":"Germany","position":"Midfielder","goals":2,"expected_goals_xg":0.08},{"player_name":"Federico Trezeguet","team":"Uruguay","position":"Forward","goals":2,"expected_goals_xg":0.16}];
+            
+            function renderTable(filteredData) {
+                const tbody = document.getElementById('tableBody');
+                tbody.innerHTML = '';
+                
+                filteredData.forEach((player, index) => {
+                    const overPerf = (player.goals - player.expected_goals_xg).toFixed(2);
+                    const perfClass = overPerf > 0 ? 'over-perf' : 'under-perf';
+                    
+                    const row = `
+                        <tr>
+                            <td class="rank">#{index + 1}</td>
+                            <td><strong>{player.player_name}</strong></td>
+                            <td>{player.team}</td>
+                            <td>{player.position}</td>
+                            <td><strong>{player.goals}</strong></td>
+                            <td>{player.expected_goals_xg.toFixed(2)}</td>
+                            <td class="{perfClass}">{overPerf}</td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            }
+            
+            function filterTable() {
+                const input = document.getElementById('searchInput').value.toLowerCase();
+                const filtered = data.filter(player => 
+                    player.player_name.toLowerCase().includes(input) ||
+                    player.team.toLowerCase().includes(input) ||
+                    player.position.toLowerCase().includes(input)
+                );
+                renderTable(filtered);
+            }
+            
+            // Renderizar inicial
+            renderTable(data);
+        </script>
+    </body>
+    </html>
+    

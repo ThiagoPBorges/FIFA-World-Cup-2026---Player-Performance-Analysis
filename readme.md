@@ -34,6 +34,7 @@
 ### T1.1 - Tamanho e Memória
 
 **Achados:**
+
 - Memória: 31.55 MB (gerenciável)
 - Linhas: 54.600 | Colunas: 75
 - Distribuição: 42 Int64, 28 Float64, 5 String
@@ -52,7 +53,7 @@
 **Coluna 2: `pass_accuracy`**
 
 - **Suspeita:** 23.096 registros têm pass_accuracy > 0 mas total_passes = 0
-- **Raciocínio:** Violação lógica — acurácia sem passes realizados 
+- **Raciocínio:** Violação lógica — acurácia sem passes realizados
 - **Descoberta:** Todos esses casos têm minutes_played = 0 (subs que não entraram)
 - **Validação:** Padrão esperado; dados de substitutos com estatísticas default
 
@@ -79,6 +80,12 @@
    - Correlação forte (0.727) com `offensive_contribution`
    - Jersey_number (0.569): Atacantes > Defensores
 10. **Valor de Mercado** → `market_value_eur` — Valor em euros
+  - Correlação forte (0.6) com `consistency_score`
+  - Offensive_contribution (0.5): Atacantes > Defensores
+
+**Insight:** A criatividade de um atacante (jersey 9-11) é ~2x maior que a de um defensor, 
+validando que a métrica diferencia posições corretamente. Valor de mercado correlaciona 
+com ofensiva mas não com consistência — preço reflete potencial, não regularidade.
 
 ---
 
