@@ -31,6 +31,16 @@
 
 ## Parte 1 - Primeiro Contato / Sanidade
 
+### T1.1 - Tamanho e Memória
+
+**Achados:**
+- Memória: 31.55 MB (gerenciável)
+- Linhas: 54.600 | Colunas: 75
+- Distribuição: 42 Int64, 28 Float64, 5 String
+- **Potencial redução:** Float64→Float32 = -50% (13.7 MB)
+
+---
+
 ### T1.2 - Mapa de Qualidade: 3 Colunas Suspeitas
 
 **Coluna 1: `player_rating`**
@@ -42,7 +52,7 @@
 **Coluna 2: `pass_accuracy`**
 
 - **Suspeita:** 23.096 registros têm pass_accuracy > 0 mas total_passes = 0
-- **Raciocínio:** Violação lógica — acurácia sem passes realizados
+- **Raciocínio:** Violação lógica — acurácia sem passes realizados 
 - **Descoberta:** Todos esses casos têm minutes_played = 0 (subs que não entraram)
 - **Validação:** Padrão esperado; dados de substitutos com estatísticas default
 
@@ -54,6 +64,27 @@
   - Kalidou Mendy: P01016 e P01019
 - **Raciocínio:** Pode ser duplicação ou erro de ID assignment
 - **Validação:** Mesmo time, mesma nacionalidade — possível duplicação do dataset
+
+### T1.3 - As 10 Categorias
+
+1. **Identificação** → `player_id` — ID único do jogador
+2. **Dados Pessoais** → `height_cm` — Altura em centímetros
+3. **Posição/Time** → `position` — Posição tática (DF, GK, MF, FW)
+4. **Passes** → `pass_accuracy` — Taxa de passe (0-1)
+5. **Defesa** → `tackles` — Desarmes realizados
+6. **Movimentação** → `distance_covered_km` — Distância em km
+7. **Velocidade** → `top_speed_kmh` — Velocidade máxima
+8. **Ofensiva** → `offensive_contribution` — Contribuição no ataque (0-100)
+9. **Criatividade** → `creativity_score` — Capacidade de criar chances (0-100)
+   - Correlação forte (0.727) com `offensive_contribution`
+   - Jersey_number (0.569): Atacantes > Defensores
+10. **Valor de Mercado** → `market_value_eur` — Valor em euros
+
+---
+
+### Visualizações Geradas
+
+- `outputs/heatmap_correlacao.png` — Matriz de correlações entre 16 métricas-chave
 
 ## Referências e Recursos de Estudo
 
